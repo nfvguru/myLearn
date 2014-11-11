@@ -1,0 +1,222 @@
+#!/bin/sh 
+
+op=$1
+
+#DIR
+C_DIR="C"
+D_DIR="CPP"
+G_DIR="GO"
+J_DIR="JVM"
+N_DIR="NJS"
+P_DIR="Python"
+
+
+
+
+#
+PRG_TRAK=".prgTrack"
+PRG_DESC=""
+PRG_NAME="prgm"
+PRG_CNT=1
+PRG_HIST=".prgHistory"
+
+prg_template ()
+{
+	prgop=$1
+
+	case $prgop in
+		C)
+		PRG_TRAK=${C_DIR}/${PRG_TRAK}
+		PRG_NAME="nprgm"
+		PRG_HIST=${C_DIR}/${PRG_HIST}
+		;;
+		D)
+		PRG_TRAK=${D_DIR}/${PRG_TRAK}
+		PRG_NAME="nprgm"
+		PRG_HIST=${D_DIR}/${PRG_HIST}
+		;;
+		G)
+		PRG_TRAK=${G_DIR}/${PRG_TRAK}
+		PRG_NAME="nprgm"
+		PRG_HIST=${G_DIR}/${PRG_HIST}
+		;;
+		J)
+		PRG_TRAK=${J_DIR}/${PRG_TRAK}
+		PRG_NAME="nprgm"
+		PRG_HIST=${J_DIR}/${PRG_HIST}
+		;;
+		N)
+		PRG_TRAK=${N_DIR}/${PRG_TRAK}
+		PRG_NAME="nprgm"
+		PRG_HIST=${N_DIR}/${PRG_HIST}
+		;;
+		P)
+		PRG_TRAK=${P_DIR}/${PRG_TRAK}
+		PRG_NAME="nprgm"
+		PRG_HIST=${P_DIR}/${PRG_HIST}
+		;;
+	esac
+	
+	if [ -f ${PRG_TRAK} ] ; then
+		PRG_CNT=$( cat $PRG_TRAK)
+		echo "$( expr $PRG_CNT + 1)" > $PRG_TRAK
+	else
+		echo "1" > $PRG_TRAK
+	fi
+	PRG_NAME="${PRG_NAME}_${PRG_CNT}"
+	echo -e "Enter Program Desc: \c"
+	read PRG_DESC
+	echo "$PRG_CNT) $(date): $PRG_NAME : $PRG_DESC" >> ${PRG_HIST}
+}
+
+
+create_templates ()
+{
+	ctop=$1
+	C_STR="#include <stdio.h>\\n\\nint main()\\n{\\n\\tprintf(\"Hello World!\\\\n\");\\n}"
+	D_STR="#include <iostream>\\n\\nint main()\\n{\\n\\tstd::cout << \"Hello World!\" << std::endl;\\n}"
+	G_STR="package main\\nimport \"fmt\"\\nfunc main() {\\n\\tfmt.Printf(\"hello, World!\\\\n\")\\n}"
+	N_STR="console.log(\"Hello World!\");"
+	P_STR="#!/usr/bin/python\\nprint \"Hello, Python!\";"
+	
+	case $ctop in 
+
+		all)
+		prg_template all	
+		#STR
+		J_STR="public class $PRG_NAME {\\n\\tpublic static void main(String []args) {\\n\\t\\tSystem.out.println(\"Hello World!\");\\n\\t}\\n}"
+		echo -e "$C_STR" > ${C_DIR}/${PRG_NAME}.c
+		echo -e "$D_STR" > ${D_DIR}/${PRG_NAME}.cpp
+		echo -e "$G_STR" > ${G_DIR}/${PRG_NAME}.go
+		echo -e "$J_STR" > ${J_DIR}/${PRG_NAME}.java
+		echo -e "$N_STR" > ${N_DIR}/${PRG_NAME}.js
+		echo -e "$P_STR" > ${P_DIR}/${PRG_NAME}.py
+		;;
+
+		C)
+		prg_template C
+		echo -e "$C_STR" > ${C_DIR}/${PRG_NAME}.c
+		git add ${C_DIR}/${PRG_NAME}.c
+		;;
+		D)
+		prg_template D
+		echo -e "$D_STR" > ${D_DIR}/${PRG_NAME}.cpp
+		git add ${C_DIR}/${PRG_NAME}.cpp
+		;;
+		G)
+		prg_template G
+		echo -e "$G_STR" > ${G_DIR}/${PRG_NAME}.go
+		git add ${C_DIR}/${PRG_NAME}.go
+		;;
+		J)
+		prg_template J
+		J_STR="public class $PRG_NAME {\\n\\tpublic static void main(String []args) {\\n\\t\\tSystem.out.println(\"Hello World!\");\\n\\t}\\n}"
+		echo -e "$J_STR" > ${J_DIR}/${PRG_NAME}.java
+		git add ${C_DIR}/${PRG_NAME}.java
+		;;
+		N)
+		prg_template N
+		echo -e "$N_STR" > ${N_DIR}/${PRG_NAME}.js
+		git add ${C_DIR}/${PRG_NAME}.js
+		;;
+		P)
+		prg_template P
+		echo -e "$P_STR" > ${P_DIR}/${PRG_NAME}.py
+		git add ${C_DIR}/${PRG_NAME}.py
+		;;
+	esac
+}
+
+if [[ ${op:0:1} != "n" ]] ; then
+	PRG_CNT=$2
+	if [ "$PRG_CNT" == "" ]; then
+	    cat  $PRG_HIST
+	    echo -e "ENTER the index to edit/run: \c"
+	    read PRG_CNT
+	fi 
+fi
+
+PREFIX=$3
+if [ "$PREFIX" != "" ]; then
+ 	PRG_NAME="nprgm"
+fi
+
+case $op in 
+	n)
+	create_templates all
+	;;
+	
+	nc)
+	create_templates C
+	;;
+	nd)
+	create_templates D
+	;;
+	ng)
+	create_templates G
+	;;
+	nj)
+	create_templates J
+	;;
+	nn)
+	create_templates N
+	;;
+	np)
+	create_templates P
+	;;
+
+	ec)
+	vim ${C_DIR}/${PRG_NAME}_${PRG_CNT}.c
+	;;
+	ed)
+	vim ${D_DIR}/${PRG_NAME}_${PRG_CNT}.cpp
+	;;
+	eg)
+	vim ${G_DIR}/${PRG_NAME}_${PRG_CNT}.go
+	;;
+	ej)
+	vim ${J_DIR}/${PRG_NAME}_${PRG_CNT}.java
+	;;
+	en)
+	vim ${N_DIR}/${PRG_NAME}_${PRG_CNT}.js
+	;;
+	ep)
+	vim ${P_DIR}/${PRG_NAME}_${PRG_CNT}.py
+	;;
+
+
+	rc)
+	cd ${C_DIR}
+	make ${PRG_NAME}_${PRG_CNT}
+	./${PRG_NAME}_${PRG_CNT}
+	cd .. 
+	;;
+	rd)
+	cd ${D_DIR}
+	make ${PRG_NAME}_${PRG_CNT}
+	./${PRG_NAME}_${PRG_CNT}
+	cd .. 
+	;;
+	rg)
+	cd ${G_DIR}
+	go run ${PRG_NAME}_${PRG_CNT}.go
+	cd .. 
+	;;
+	rj)
+	cd ${J_DIR}
+	javac ${PRG_NAME}_${PRG_CNT}.java
+	java ${PRG_NAME}_${PRG_CNT}
+	cd .. 
+	;;
+	rn)
+	cd ${N_DIR}
+	node ${PRG_NAME}_${PRG_CNT}.js
+	cd .. 
+	;;
+	rp)
+	cd ${P_DIR}
+	python ${PRG_NAME}_${PRG_CNT}.py
+	cd .. 
+	;;
+esac
+
