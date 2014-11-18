@@ -190,7 +190,7 @@ case $op in
 	rc)
 	cd ${C_DIR}
 	make ${PRG_NAME}_${PRG_CNT}
-	./${PRG_NAME}_${PRG_CNT}
+	sudo ./${PRG_NAME}_${PRG_CNT}
 	cd .. 
 	;;
 	rd)
