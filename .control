@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/bash 
 
 op=$1
 
@@ -126,8 +126,10 @@ create_templates ()
 		;;
 	esac
 }
+myval=${op:0:1}
 
-if [[ ${op:0:1} != "n" ]] ; then
+
+if [ "${op:0:1}" != "n" ] ; then
 	PRG_CNT=$2
 	if [ "$PRG_CNT" == "" ]; then
 	    cat  $PRG_HIST
