@@ -16,7 +16,7 @@ P_DIR="Python"
 #
 PRG_TRAK=".prgTrack"
 PRG_DESC=""
-PRG_NAME="prgm"
+PRG_NAME="nprgm"
 PRG_CNT=1
 PRG_HIST=".prgHistory"
 
@@ -101,28 +101,28 @@ create_templates ()
 		D)
 		prg_template D
 		echo -e "$D_STR" > ${D_DIR}/${PRG_NAME}.cpp
-		git add ${C_DIR}/${PRG_NAME}.cpp
+		git add ${D_DIR}/${PRG_NAME}.cpp
 		;;
 		G)
 		prg_template G
 		echo -e "$G_STR" > ${G_DIR}/${PRG_NAME}.go
-		git add ${C_DIR}/${PRG_NAME}.go
+		git add ${G_DIR}/${PRG_NAME}.go
 		;;
 		J)
 		prg_template J
 		J_STR="public class $PRG_NAME {\\n\\tpublic static void main(String []args) {\\n\\t\\tSystem.out.println(\"Hello World!\");\\n\\t}\\n}"
 		echo -e "$J_STR" > ${J_DIR}/${PRG_NAME}.java
-		git add ${C_DIR}/${PRG_NAME}.java
+		git add ${J_DIR}/${PRG_NAME}.java
 		;;
 		N)
 		prg_template N
 		echo -e "$N_STR" > ${N_DIR}/${PRG_NAME}.js
-		git add ${C_DIR}/${PRG_NAME}.js
+		git add ${N_DIR}/${PRG_NAME}.js
 		;;
 		P)
 		prg_template P
 		echo -e "$P_STR" > ${P_DIR}/${PRG_NAME}.py
-		git add ${C_DIR}/${PRG_NAME}.py
+		git add ${P_DIR}/${PRG_NAME}.py
 		;;
 	esac
 }
@@ -132,7 +132,32 @@ myval=${op:0:1}
 if [ "${op:0:1}" != "n" ] ; then
 	PRG_CNT=$2
 	if [ "$PRG_CNT" == "" ]; then
-	    cat  $PRG_HIST
+            ptye="${op:1:1}"
+	    case  $ptye in
+               c)
+		cat ${C_DIR}/${PRG_HIST}
+               ;;
+               d)
+		cat ${D_DIR}/${PRG_HIST}
+               ;;
+               g)
+		cat ${G_DIR}/${PRG_HIST}
+               ;;
+               j)
+		cat ${J_DIR}/${PRG_HIST}
+               ;;
+               n)
+		cat ${N_DIR}/${PRG_HIST}
+               ;;
+               p)
+		cat ${P_DIR}/${PRG_HIST}
+               ;;
+               *)
+                echo "Invalid command"
+                exit;
+            esac
+	    #cat  $PRG_HIST
+            #find ./ -name .prgHistory | xargs cat
 	    echo -e "ENTER the index to edit/run: \c"
 	    read PRG_CNT
 	fi 
