@@ -1,12 +1,12 @@
 #!/usr/bin/python
 def firstex(*args):
 	for arg in args:
-		print arg
+		print(arg)
 
 def secex(**kwargs):
 	if kwargs is not None:
 		for key, val in kwargs.iteritems():
-			print "Key=%r, Val=%r" % ( key, val) 
+			print ("Key=%r, Val=%r" % ( key, val))
 
 firstex('one', 'two', 'three', 'four');
 mylist =('apple', 'orange', 3 , 7 );

@@ -152,6 +152,9 @@ if [ "${op:0:1}" != "n" ] ; then
                p)
 		cat ${P_DIR}/${PRG_HIST}
                ;;
+               3)
+		cat ${P_DIR}/${PRG_HIST}
+               ;;
                *)
                 echo "Invalid command"
                 exit;
@@ -243,6 +246,11 @@ case $op in
 	rp)
 	cd ${P_DIR}
 	python ${PRG_NAME}_${PRG_CNT}.py
+	cd .. 
+	;;
+	r3p)
+	cd ${P_DIR}
+	python3.5 ${PRG_NAME}_${PRG_CNT}.py
 	cd .. 
 	;;
 esac

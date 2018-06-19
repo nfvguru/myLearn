@@ -126,6 +126,7 @@ alias rg='./.control rg'
 alias rj='./.control rj'
 alias rn='./.control rn'
 alias rp='./.control rp'
+alias r3p='./.control r3p'
 alias hi='find ./ -name .prgHistory | xargs cat'
 git config --global user.email "nfvguru@gmail.com"
 git config --global user.name "NFVGURU"
