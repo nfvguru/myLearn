@@ -77,7 +77,7 @@ create_templates ()
 	D_STR="#include <iostream>\\n\\nint main()\\n{\\n\\tstd::cout << \"Hello World!\" << std::endl;\\n}"
 	G_STR="package main\\nimport \"fmt\"\\nfunc main() {\\n\\tfmt.Printf(\"hello, World!\\\\n\")\\n}"
 	N_STR="console.log(\"Hello World!\");"
-	P_STR="#!/usr/bin/python\\nprint \"Hello, Python!\";"
+	P_STR="#!/usr/bin/python\\nprint (\"Hello, Python!\");"
 	
 	case $ctop in 
 
