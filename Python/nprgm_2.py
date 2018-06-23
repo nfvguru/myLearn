@@ -21,8 +21,8 @@ def for_example():
         print(i)
 
 ########################################################################################################
-def dict_example():
-    print("===========dict Example =================")
+def list_example():
+    print("===========list Example =================")
     a = ['a', 'b', 'c' ]
     print(a)
     del a[1]
@@ -137,7 +137,7 @@ def yield_example():
 
 add_example()                        #  Simple Function to add
 for_example()                        #  Function to demonstrte the use of for
-dict_example()                       #  Function to demonstrate the use of dic
+list_example()                       #  Function to demonstrate the use of dic
 except_example()                     #  Function to demonstrate the use of except
 for_name_example()                   #  Function to demonstrate the use of for with strings
 lambda_example()                     #  Function to demonstrate the use of  lambda
