@@ -5,4 +5,12 @@
 2. Python
    https://www.programiz.com/python-programming
    http://ubuntuhandbook.org/index.php/2017/07/install-python-3-6-1-in-ubuntu-16-04-lts/
+   sudo  apt-get install python3.5-tk -- for GUI to work with 3.5 using tkinter
+   sudo  apt-get install python2.7-tk -- for GUI to work with 2.7 using tkinter
+   http://appjar.info/
+   download appjar to the current dir from https://github.com/jarvisteach/appJar/blob/appJar/releases/appJar.zip?raw=true
+   https://wiki.python.org/moin/GuiProgramming
+   PyJamas -- http://pyjs.org/
+           https://github.com/pyjs/pyjs/wiki/GettingStarted
+
 
