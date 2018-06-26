@@ -245,12 +245,12 @@ case $op in
 	;;
 	rp)
 	cd ${P_DIR}
-	python ${PRG_NAME}_${PRG_CNT}.py
+	python ${PRG_NAME}_${PRG_CNT}.py $@
 	cd .. 
 	;;
 	r3p)
 	cd ${P_DIR}
-	python3.5 ${PRG_NAME}_${PRG_CNT}.py
+	python3.5 ${PRG_NAME}_${PRG_CNT}.py $@
 	cd .. 
 	;;
 esac
