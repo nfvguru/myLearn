@@ -46,7 +46,7 @@ def loginGUI():
 
 
 def main():
-    if os.path.isdir("./appJars") == False:
+    if os.path.isdir("./appJar") == False:
         print("\n 1. Download and Install appJar from {} to load GUI".format("http://appjar.info"))
         print(" =>     How to Install: Just unzip appJar to the Python Directory");
         print("\n 2. Also should install relvant tkinter for the python version in use")
