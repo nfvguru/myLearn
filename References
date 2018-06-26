@@ -15,4 +15,4 @@
            https://github.com/pyjs/pyjs/wiki/GettingStarted
            sudo pip install --proxy http://10.82.254.254:3128 git+https://github.com/pyjs/pyjs.git#egg=pyjs
 
-
+   Tkinter Tutotiral - https://likegeeks.com/python-gui-examples-tkinter-tutorial/
