@@ -55,4 +55,5 @@ def main():
     myGUITest()
     loginGUI()
 
+sys.argv[1:]=[]
 main()
