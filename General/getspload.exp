@@ -1,0 +1,64 @@
+#!/usr/bin/expect
+set VAIP [lindex $argv 0]
+set SP [lindex $argv 1]
+set VAUSER admin
+set VAPASS admin
+set timeout 200
+
+spawn ssh $VAUSER@$VAIP 
+
+expect {
+    password: {
+        send "$VAPASS\r"
+    } "yes/no)?" {
+        send "yes\r"
+        set timeout -1
+    } timeout {
+        exit
+    } eof {
+        exit
+    }
+}
+
+if { $timeout eq -1 } {
+    expect "password:"
+    send "$VAPASS\r"
+}
+
+expect {
+    "Main#" {
+        send "/stats/slb/sp $SP/maint\n\r";
+    } "y\]:" {
+        send "y\r"
+        set timeout -2
+    }
+}
+
+if { $timeout eq -2 } {
+    expect "Main#"
+    send "/boot/cur\n\r";
+}
+
+expect "Statistics#"
+send "quit\n\r";
+
+expect {
+   "n\]:" {
+     send "y\n\r";
+  } timeout {
+     exit
+  } eof {
+     exit
+  }
+}
+
+expect {
+   "n\]:" {
+     send "y\n\r";
+  } timeout {
+     exit
+  } eof {
+     exit
+  }
+}
+interact
