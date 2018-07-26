@@ -1,0 +1,4 @@
+Required Installations
+=============================
+1. www.anaconda.com/downloads
+2. www.sublimetext.com
