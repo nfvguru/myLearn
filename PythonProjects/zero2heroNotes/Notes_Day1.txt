@@ -2,3 +2,8 @@ Required Installations
 =============================
 1. www.anaconda.com/downloads
 2. www.sublimetext.com
+
+------------------------------------
+There is a workaround: it is possible to create symlink to any location you want, including over drives. 
+For example, type in cmd: "mklink /D D_Drive D:\sources".
+
