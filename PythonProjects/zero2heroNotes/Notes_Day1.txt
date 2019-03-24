@@ -7,3 +7,10 @@ Required Installations
 There is a workaround: it is possible to create symlink to any location you want, including over drives. 
 For example, type in cmd: "mklink /D D_Drive D:\sources".
 
+shift + enter == Run command in Notebook
+
+https://github.com/Pierian-Data/Complete-Python-3-Bootcamp
+https://docs.python.org/2/tutorial/floatingpoint.html
+Dynamic Typing vs Static Typing
+
+String Interpolation -- sticking a string into a string.
