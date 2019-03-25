@@ -14,3 +14,7 @@ https://docs.python.org/2/tutorial/floatingpoint.html
 Dynamic Typing vs Static Typing
 
 String Interpolation -- sticking a string into a string.
+
+
+HERE IS AN AWESOME SOURCE FOR PRINT FORMATTING:
+https://pyformat.info/
